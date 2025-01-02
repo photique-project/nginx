@@ -16,8 +16,8 @@ services:
 
   certbot:
     image: certbot/certbot:latest
-    container_name: certbot
-    command: certonly --webroot --webroot-path=/var/www/certbot --email photique0538@gmail.com --agree-tos --no-eff-email -d www.photique.shop
+    container_name: certbot-dev
+    command: certonly --webroot --webroot-path=/var/www/certbot --email photique0538@gmail.com --agree-tos --no-eff-email -d www.photique.shop --force-renewal
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
       - /var/www/certbot:/var/www/certbot
