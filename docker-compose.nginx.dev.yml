@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: photique/dev/nginx:0.1.0
+    container_name: nginx-dev
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d  
+      - ./nginx/logs:/var/log/nginx       
+      - ./nginx/html:/usr/share/nginx/html
