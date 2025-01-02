@@ -19,9 +19,14 @@ jobs:
         docker build -f ./nginx/Dockerfile.dev -t ${{ secrets.DOCKER_REPO_DEV }}:0.1.0 ./nginx
         docker push ${{ secrets.DOCKER_REPO_DEV }}:0.1.0
 
+    - name: SSH 키 파일 생성
+      run: |
+        echo "${{ secrets.KEY }}" > ./ssh_key
+        chmod 600 ./ssh_key
+
     - name: EC2에 파일 복사
       run: |
-        scp -i ${{ secrets.KEY }} ./docker-compose.nginx.dev.yml ${{ secrets.HOST_DEV }}:/home/ubuntu/docker-compose.nginx.dev.yml
+        scp -i ./ssh_key ./docker-compose.nginx.dev.yml ${{ secrets.HOST_DEV }}:/home/ubuntu/docker-compose.nginx.dev.yml
 
     - name: EC2 연결 및 도커컴포즈 실행
       uses: appleboy/ssh-action@master
