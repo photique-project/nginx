@@ -6,7 +6,7 @@ on:
       - develop
 
 jobs:
-  개발서버 패포:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
