@@ -6,7 +6,7 @@ on:
       - develop
 
 jobs:
-  build-and-deploy:
+  개발서버 패포:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,7 +25,7 @@ jobs:
 
     - name: Docker Hub에 이미지 푸시
       run: |
-        docker push ${{ secrets.DOCKER_USERNAME }}/nginx:0.1.0
+        docker push ${{ secrets.DOCKER_USERNAME }}/dev/nginx:0.1.0
 
     - name: EC2에 파일 복사
       run: |
