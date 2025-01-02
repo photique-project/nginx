@@ -38,10 +38,4 @@ jobs:
             sudo docker-compose -f docker-compose.nginx.dev.yml down --remove-orphans
             sudo docker-compose -f docker-compose.nginx.dev.yml pull
             sudo docker-compose -f docker-compose.nginx.dev.yml up -d
-            sudo docker exec certbot certonly --webroot \
-              --webroot-path=/var/www/html \
-              -d www.photique.shop \
-              --email photique0538@gmail.com \
-              --agree-tos --no-eff-email
-            sudo docker exec nginx-dev nginx -s reload
             sudo docker image prune -a -f
