@@ -25,7 +25,7 @@ jobs:
         username: ubuntu
         host: ${{ secrets.HOST_DEV }}
         key: ${{ secrets.KEY }}
-        source: ./docker-compose.nginx.dev.yml
+        source: ./docker-compose.nginx.dev.yml, ./renew.sh
         target: "/home/ubuntu"
 
     - name: EC2 연결 및 도커컴포즈 실행
@@ -39,3 +39,14 @@ jobs:
             sudo docker-compose -f docker-compose.nginx.dev.yml pull
             sudo docker-compose -f docker-compose.nginx.dev.yml up -d
             sudo docker image prune -a -f
+
+    - name: EC2 연결 및 ssl 인증서 갱신 크론탭 설정
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST_DEV }}
+        username: ubuntu
+        key: ${{ secrets.KEY }}
+        script: |
+            chmod +x /home/ubuntu/renew.sh
+            (crontab -l 2>/dev/null; echo "0 0 1 */2 * /home/ubuntu/renew.sh >> /var/log/renew.log 2>&1") | crontab -
+            crontab -l
