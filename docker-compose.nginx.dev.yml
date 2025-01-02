@@ -20,9 +20,4 @@ services:
       - /var/lib/letsencrypt:/var/lib/letsencrypt
       - ./nginx/html:/var/www/html
     entrypoint: >
-      sh -c "certbot certonly --webroot 
-      --webroot-path=/var/www/html 
-      --email photique0538@gmail.com 
-      --agree-tos 
-      --no-eff-email 
-      -d www.photique.shop"
+      sh -c "certbot certonly --nginx -d www.photique.shop"
