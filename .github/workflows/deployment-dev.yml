@@ -30,7 +30,7 @@ jobs:
         username: ubuntu
         key: ${{ secrets.KEY }}
         script: |
-            docker-compose -f docker-compose.yml down --remove-orphans
-            docker-compose -f docker-compose.yml pull
-            docker-compose -f docker-compose.yml up -d
+            docker-compose -f docker-compose.nginx.dev.yml down --remove-orphans
+            docker-compose -f docker-compose.nginx.dev.yml pull
+            docker-compose -f docker-compose.nginx.dev.yml up -d
             docker image prune -a -f
