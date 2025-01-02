@@ -6,5 +6,36 @@ services:
     container_name: nginx-dev
     ports:
       - "80:80"
+      - "443:443"
     volumes:
-      - ./nginx/logs:/var/log/nginx       
+      - ./nginx/logs:/var/log/nginx
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /var/lib/letsencrypt:/var/lib/letsencrypt
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /var/lib/letsencrypt:/var/lib/letsencrypt
+      - ./nginx/html:/var/www/html
+    entrypoint: >
+      sh -c "certbot certonly --webroot 
+      --webroot-path=/var/www/html 
+      --email photique0538@gmail.com
+      --agree-tos 
+      --no-eff-email 
+      -d www.photique.shop"
+
+  certbot-cron:
+    image: certbot/certbot
+    container_name: certbot-cron
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /var/lib/letsencrypt:/var/lib/letsencrypt
+      - ./nginx/html:/var/www/html
+    entrypoint: >
+      sh -c "while true; do 
+      certbot renew --webroot-path=/var/www/html && nginx -s reload; 
+      sleep 12h; 
+      done"
