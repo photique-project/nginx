@@ -10,6 +10,7 @@ services:
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
       - /var/www/certbot:/var/www/certbot
+      - /home/ubuntu/react:/home/ubuntu/react
     restart: always
 
 
