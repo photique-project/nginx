@@ -13,8 +13,6 @@ services:
       - /home/ubuntu/react:/home/ubuntu/react
     restart: always
 
-
-
   certbot:
     image: certbot/certbot:latest
     container_name: certbot-dev
@@ -24,3 +22,6 @@ services:
       - /var/www/certbot:/var/www/certbot
       - /var/log/letsencrypt:/var/log/letsencrypt
     
+networks:
+  backend:
+    driver: bridge
