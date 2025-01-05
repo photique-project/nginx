@@ -23,7 +23,3 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt
       - /var/www/certbot:/var/www/certbot
       - /var/log/letsencrypt:/var/log/letsencrypt
-
-networks:
-  bridge:
-    external: true
