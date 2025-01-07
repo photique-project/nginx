@@ -24,8 +24,8 @@ jobs:
 
     - name: 권한부여
       run: |
-        sudo chmod -R 775 ./nginx
         sudo chown -R $(whoami):$(whoami) ./nginx
+        sudo chmod -R 775 ./nginx
 
     - name: EC2에 파일 복사
       uses: appleboy/scp-action@master
