@@ -16,7 +16,7 @@ jobs:
     - name: tar를 위한 권한부여
       run: |
         ls nginx -al
-        sudo chown -R $USER:$USER ./nginx
+        sudo chown -R ubuntu:ubuntu ./nginx
         sudo chmod -R +x ./nginx
         ls nginx -al
 
