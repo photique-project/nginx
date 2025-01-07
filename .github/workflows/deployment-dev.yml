@@ -13,10 +13,14 @@ jobs:
     - name: 소스코드 체크아웃
       uses: actions/checkout@v3
     
-    - name: 체크아웃한 디렉터리의 모든 파일에 읽기 권한 부여
+    - name: 파일 권한 확인
       run: |
-        chmod -R +r .
-
+        echo "권한 확인: root 디렉토리"
+        ls -ld .
+        echo "권한 확인: nginx 디렉토리"
+        ls -ld ./nginx
+        echo "권한 확인: nginx 파일들"
+        ls -l ./nginx
 
     - name: Nginx 도커 이미지 빌드 및 푸시
       run: |
