@@ -15,7 +15,7 @@ jobs:
 
     - name: tar를 위한 권한부여
       run: |
-        ls -al
+        ls nginx -al
         sudo chown -R $USER:$USER ./nginx
 
     - name: Nginx 도커 이미지 빌드 및 푸시
