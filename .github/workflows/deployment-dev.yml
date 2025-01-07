@@ -13,6 +13,12 @@ jobs:
     - name: 소스코드 체크아웃
       uses: actions/checkout@v3
 
+    - name: 권한 수정 및 확인
+      run: |
+        sudo chown -R $(whoami) ./nginx
+        chmod -R +rw ./nginx
+        ls -l ./nginx
+
     - name: tar를 위한 권한부여
       run: chmod -R +w ./nginx
 
