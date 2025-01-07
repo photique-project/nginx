@@ -25,7 +25,7 @@ jobs:
         username: ubuntu
         host: ${{ secrets.HOST_DEV }}
         key: ${{ secrets.KEY }}
-        source: ./docker-compose.nginx.dev.yml, ./renew.sh, ./nginx.blue.dev.conf, ./nginx.green.dev.conf
+        source: ./docker-compose.nginx.dev.yml, ./renew.sh, ./nginx.blue.dev.conf, ./nginx.green.dev.conf, ./nginx.default.dev.conf
         target: /home/ubuntu
 
     - name: EC2 연결 및 도커컴포즈 실행
@@ -39,7 +39,8 @@ jobs:
             sudo docker-compose -f docker-compose.nginx.dev.yml pull
             sudo docker-compose -f docker-compose.nginx.dev.yml up -d
             sudo docker image prune -a -f
-            sudo cp /home/ubuntu/nginx.blue.dev.conf /home/ubuntu/nginx/conf.d/default.conf 
+            sudo cp /home/ubuntu/nginx.default.dev.conf /home/ubuntu/nginx/conf.d/default.conf
+            sudo docker exec -it nginx-dev nginx -s reload
 
     - name: EC2 연결 및 ssl 인증서 갱신 크론탭 설정
       uses: appleboy/ssh-action@master
