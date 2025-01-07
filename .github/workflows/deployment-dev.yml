@@ -13,15 +13,10 @@ jobs:
     - name: 소스코드 체크아웃
       uses: actions/checkout@v3
 
-    - name: 압축전 권한부여
-      run: |
-        ls -al
-        ls nginx -al
-
     - name: Nginx 도커 이미지 빌드 및 푸시
       run: |
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        docker build -f ./nginx/Dockerfile.dev -t ${{ secrets.DOCKER_REPO_DEV }}:0.1.0 ./nginx
+        docker build -f ./Dockerfile.dev -t ${{ secrets.DOCKER_REPO_DEV }}:0.1.0 ./nginx
         docker push ${{ secrets.DOCKER_REPO_DEV }}:0.1.0
 
     - name: EC2에 파일 복사
@@ -30,7 +25,7 @@ jobs:
         username: ubuntu
         host: ${{ secrets.HOST_DEV }}
         key: ${{ secrets.KEY }}
-        source: ./docker-compose.nginx.dev.yml, ./renew.sh, ./nginx/nginx.blue.dev.conf, ./nginx/nginx.green.dev.conf
+        source: ./docker-compose.nginx.dev.yml, ./renew.sh, ./nginx.blue.dev.conf, ./nginx.green.dev.conf
         target: /home/ubuntu
 
     - name: EC2 연결 및 도커컴포즈 실행
