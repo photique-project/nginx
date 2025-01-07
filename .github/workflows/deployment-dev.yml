@@ -25,7 +25,7 @@ jobs:
         username: ubuntu
         host: ${{ secrets.HOST_DEV }}
         key: ${{ secrets.KEY }}
-        source: ./docker-compose.nginx.dev.yml, ./renew.sh
+        source: ./docker-compose.nginx.dev.yml, ./renew.sh, ./nginx/nginx.blue.dev.conf, ./nginx/nginx.green.dev.conf
         target: /home/ubuntu
 
     - name: EC2 연결 및 도커컴포즈 실행
