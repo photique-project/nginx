@@ -24,7 +24,7 @@ jobs:
 
     - name: 권한부여
       run: |
-        sudo chmod -R 664 ./nginx
+        sudo chmod -R 777 ./nginx
 
     - name: EC2에 파일 복사
       uses: appleboy/scp-action@master
@@ -33,15 +33,6 @@ jobs:
         host: ${{ secrets.HOST_DEV }}
         key: ${{ secrets.KEY }}
         source: ./docker-compose.nginx.dev.yml, ./renew.sh, ./nginx/nginx.blue.dev.conf, ./nginx/nginx.green.dev.conf
-        target: /home/ubuntu
-
-    - name: EC2에 설정 파일 복사
-      uses: appleboy/scp-action@master
-      with:
-        username: ubuntu
-        host: ${{ secrets.HOST_DEV }}
-        key: ${{ secrets.KEY }}
-        source: ./nginx/nginx.blue.dev.conf, ./nginx/nginx.green.dev.conf
         target: /home/ubuntu
 
     - name: EC2 연결 및 도커컴포즈 실행
