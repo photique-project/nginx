@@ -40,7 +40,7 @@ jobs:
             sudo docker-compose -f docker-compose.nginx.dev.yml up -d
             sudo docker image prune -a -f
             sudo cp /home/ubuntu/nginx.default.dev.conf /home/ubuntu/nginx/conf.d/default.conf
-            sudo docker exec -it nginx-dev nginx -s reload
+            sudo docker exec -i nginx-dev nginx -s reload
 
     - name: EC2 연결 및 ssl 인증서 갱신 크론탭 설정
       uses: appleboy/ssh-action@master
