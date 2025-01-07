@@ -24,7 +24,7 @@ jobs:
 
     - name: 권한부여
       run: |
-        sudo chown -R $(whoami):$(whoami) ./nginx
+        sudo chown -R $(whoami) ./nginx
         sudo chmod -R 775 ./nginx
 
     - name: EC2에 파일 복사
