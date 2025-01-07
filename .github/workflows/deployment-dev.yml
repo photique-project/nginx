@@ -15,7 +15,7 @@ jobs:
 
     - name: 압축전 권한부여
       run: |
-        chmod 777 ./nginx/nginx.blue.dev.conf, ./nginx/nginx.green.dev.conf
+        chmod 777 ./nginx/nginx.blue.dev.conf ./nginx/nginx.green.dev.conf
 
     - name: Nginx 도커 이미지 빌드 및 푸시
       run: |
