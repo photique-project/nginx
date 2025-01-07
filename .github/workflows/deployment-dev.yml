@@ -27,6 +27,9 @@ jobs:
         key: ${{ secrets.KEY }}
         source: ./docker-compose.nginx.dev.yml, ./renew.sh, ./nginx/nginx.blue.dev.conf, ./nginx/nginx.green.dev.conf
         target: /home/ubuntu
+        script: |
+          chmod +r /home/ubuntu/nginx.blue.dev.conf
+          chmod +r /home/ubuntu/nginx.green.dev.conf
 
     - name: EC2 연결 및 도커컴포즈 실행
       uses: appleboy/ssh-action@master
