@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   nginx:
-    image: photique/nginx-dev:0.1.0
+    image: nginx:latest
     container_name: nginx-dev
     ports:
       - "80:80"
