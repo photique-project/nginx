@@ -9,7 +9,8 @@ services:
       - "443:443"
     volumes:
       - /home/ubuntu/nginx/log:/var/log/nginx
-      - /home/ubuntu/nginx:/etc/nginx
+      - /home/ubuntu/nginx/conf.d:/etc/nginx/conf.d
+      - /home/ubuntu/nginx/nginx.conf:/etc/nginx/nginx.conf
       - /etc/letsencrypt:/etc/letsencrypt
       - /var/www/certbot:/var/www/certbot
       - /home/ubuntu/react:/home/ubuntu/react
@@ -31,4 +32,3 @@ networks:
     name: backend
     driver: bridge
 
-    
