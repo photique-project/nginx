@@ -20,7 +20,7 @@ jobs:
         host: ${{ secrets.HOST_DEV }}
         key: ${{ secrets.KEY }}
         script: mkdir -p /home/ubuntu/nginx
-        source: ./docker-compose.nginx.dev.yml, ./renew.sh, ./nginx.blue.dev.conf, ./nginx.green.dev.conf, ./nginx.default.dev.conf, ./nginx.conf
+        source: ./docker/docker-compose.nginx.dev.yml, ./config/renew.dev.sh, ./config/nginx.blue.dev.conf, ./config/nginx.green.dev.conf, ./config/nginx.default.dev.conf, ./config/nginx.conf
         target: /home/ubuntu/nginx
 
     - name: EC2 연결 및 도커컴포즈 실행
@@ -44,6 +44,6 @@ jobs:
         username: ubuntu
         key: ${{ secrets.KEY }}
         script: |
-            chmod +x /home/ubuntu/nginx/renew.sh
-            (crontab -l 2>/dev/null; echo "0 0 1 */2 * /home/ubuntu/nginx/renew.sh >> /var/log/renew.log 2>&1") | crontab -
+            chmod +x /home/ubuntu/nginx/renew.dev.sh
+            (crontab -l 2>/dev/null; echo "0 0 1 */2 * /home/ubuntu/nginx/renew.dev.sh >> /var/log/renew.log 2>&1") | crontab -
             crontab -l
