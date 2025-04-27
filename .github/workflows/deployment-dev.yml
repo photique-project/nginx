@@ -20,7 +20,7 @@ jobs:
         host: ${{ secrets.HOST_DEV }}
         key: ${{ secrets.KEY }}
         script: mkdir -p /home/ubuntu/nginx
-        source: ./docker/docker-compose.nginx.dev.yml, ./config/renew.dev.sh, ./config/nginx.blue.dev.conf, ./config/nginx.green.dev.conf, ./config/nginx.default.dev.conf, ./config/nginx.conf
+        source: docker/docker-compose.nginx.dev.yml, config/renew.dev.sh, config/nginx.blue.dev.conf, config/nginx.green.dev.conf, config/nginx.default.dev.conf, config/nginx.conf
         target: /home/ubuntu/nginx
 
     - name: EC2 연결 및 도커컴포즈 실행
