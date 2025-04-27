@@ -35,11 +35,11 @@ jobs:
             mv /home/photique0538/nginx/config/*.sh /home/photique0538/nginx/
             rm -rf /home/photique0538/nginx/docker
             rm -rf /home/photique0538/nginx/config
+            sudo cp /home/photique0538/nginx/nginx.default.prod.conf /home/photique0538/nginx/conf.d/default.conf
             docker-compose -f /home/photique0538/nginx/docker-compose.nginx.prod.yml down
             docker-compose -f /home/photique0538/nginx/docker-compose.nginx.prod.yml pull
             docker-compose -f /home/photique0538/nginx/docker-compose.nginx.prod.yml up -d
             docker image prune -a -f
-            sudo cp /home/photique0538/nginx/nginx.default.prod.conf /home/photique0538/nginx/conf.d/default.conf
             docker exec -i nginx-prod nginx -s reload
 
     - name: EC2 연결 및 ssl 인증서 갱신 크론탭 설정
