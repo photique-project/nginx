@@ -22,6 +22,12 @@ jobs:
         script: mkdir -p /home/ubuntu/nginx
         source: docker/docker-compose.nginx.dev.yml, config/renew.dev.sh, config/nginx.blue.dev.conf, config/nginx.green.dev.conf, config/nginx.default.dev.conf, config/nginx.conf
         target: /home/ubuntu/nginx
+        script: |
+            mv /home/ubuntu/nginx/docker/docker-compose.nginx.dev.yml /home/ubuntu/nginx/
+            mv /home/ubuntu/nginx/config/*.conf /home/ubuntu/nginx/
+            mv /home/ubuntu/nginx/config/*.sh /home/ubuntu/nginx/
+            rm -rf /home/ubuntu/nginx/docker
+            rm -rf /home/ubuntu/nginx/config
 
     - name: EC2 연결 및 도커컴포즈 실행
       uses: appleboy/ssh-action@master
