@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo docker-compose -f docker-compose.nginx.dev.yml down --remove-orphans
-sudo docker-compose -f docker-compose.nginx.dev.yml pull
-sudo docker-compose -f docker-compose.nginx.dev.yml up -d
-sudo docker image prune -a -f
+docker-compose -f /home/ubuntu/nginx/docker-compose.nginx.dev.yml down --remove-orphans
+docker-compose -f /home/ubuntu/nginx/docker-compose.nginx.dev.yml pull
+docker-compose -f /home/ubuntu/nginx/docker-compose.nginx.dev.yml up -d
+docker image prune -a -f
