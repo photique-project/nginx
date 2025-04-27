@@ -8,12 +8,12 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - /home/ubuntu/nginx/log:/var/log/nginx
-      - /home/ubuntu/nginx/conf.d:/etc/nginx/conf.d
-      - /home/ubuntu/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /home/photique0538/nginx/log:/var/log/nginx
+      - /home/photique0538/nginx/conf.d:/etc/nginx/conf.d
+      - /home/photique0538/nginx/nginx.conf:/etc/nginx/nginx.conf
       - /etc/letsencrypt:/etc/letsencrypt
       - /var/www/certbot:/var/www/certbot
-      - /home/ubuntu/react:/home/ubuntu/react
+      - /home/photique0538/react:/home/ubuntu/react
     restart: always
     networks:
       - backend
