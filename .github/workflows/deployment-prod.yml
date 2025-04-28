@@ -42,8 +42,6 @@ jobs:
             docker-compose -f /home/photique0538/nginx/docker-compose.nginx.prod.yml pull
             docker-compose -f /home/photique0538/nginx/docker-compose.nginx.prod.yml up -d
             docker image prune -a -f
-            sudo cp /home/photique0538/nginx/nginx.blue.prod.conf /home/photique0538/nginx/conf.d/default.conf
-            docker exec -i nginx-prod nginx -s reload
 
     - name: EC2 연결 및 ssl 인증서 갱신 크론탭 설정
       uses: appleboy/ssh-action@master
