@@ -35,11 +35,11 @@ jobs:
             mv /home/ubuntu/nginx/config/*.sh /home/ubuntu/nginx/
             rm -rf /home/ubuntu/nginx/docker
             rm -rf /home/ubuntu/nginx/config
+            sudo cp /home/ubuntu/nginx/nginx.default.dev.conf /home/ubuntu/nginx/conf.d/default.conf
             docker-compose -f /home/ubuntu/nginx/docker-compose.nginx.dev.yml down
             docker-compose -f /home/ubuntu/nginx/docker-compose.nginx.dev.yml pull
             docker-compose -f /home/ubuntu/nginx/docker-compose.nginx.dev.yml up -d
             docker image prune -a -f
-            sudo cp /home/ubuntu/nginx/nginx.default.dev.conf /home/ubuntu/nginx/conf.d/default.conf
             docker exec -i nginx-dev nginx -s reload
 
     - name: EC2 연결 및 ssl 인증서 갱신 크론탭 설정
