@@ -19,7 +19,9 @@ jobs:
         username: photique0538
         host: ${{ secrets.HOST_PROD }}
         key: ${{ secrets.KEY_PROD }}
-        script: mkdir -p /home/photique0538/nginx
+        script: |
+          mkdir -p /home/photique0538/nginx/conf.d
+          touch /home/photique0538/nginx/conf.d/default.conf
         source: docker/docker-compose.nginx.prod.yml, config/renew.prod.sh, config/nginx.blue.prod.conf, config/nginx.green.prod.conf, config/nginx.default.prod.conf, config/nginx.conf
         target: /home/photique0538/nginx
 
